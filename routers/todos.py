@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from fastapi import APIRouter, Depends, HTTPException, status
 import schemas
 import crud
-from database import SessionLocal
+from database import SessionLocal, engine
 
 router = APIRouter(
     prefix="/todos"

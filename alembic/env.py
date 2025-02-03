@@ -13,12 +13,30 @@ from alembic import context
 # access to the values within the .ini file in use.
 config = context.config
 
-config.set_main_option("sqlalchemy.url", f"postgresql://{os.environ['DATABASE_USER']}:@{os.environ['DATABASE_HOST']}:{os.environ['DATABASE_PORT']}/{os.environ['DATABASE_NAME']}")
+#config.set_main_option("sqlalchemy.url", f"postgresql://{os.environ['DATABASE_USER']}:@{os.environ['DATABASE_HOST']}:{os.environ['DATABASE_PORT']}/{os.environ['DATABASE_NAME']}")
+config.set_main_option("sqlalchemy.url", f"postgresql://{os.environ['DATABASE_USER']}:{os.environ['DATABASE_PASSWORD']}@{os.environ['DATABASE_HOST']}:{os.environ['DATABASE_PORT']}/{os.environ['DATABASE_NAME']}")
+
+# Construct the URL with the password included, for render postgresql
+
+#user = os.getenv('DATABASE_USER')
+#password = os.getenv('DATABASE_PASSWORD')
+#host = os.getenv('DATABASE_HOST')
+#port = os.getenv('DATABASE_PORT')
+#dbname = os.getenv('DATABASE_NAME')
+
+
+# Safely construct the URL to include the password
+#database_url = f"postgresql://{user}:{password}@{host}:{port}/{dbname}"
+#config.set_main_option("sqlalchemy.url", database_url)
 
 # Interpret the config file for Python logging.
 # This line sets up loggers basically.
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
+
+
+
+
 
 # add your model's MetaData object here
 # for 'autogenerate' support
