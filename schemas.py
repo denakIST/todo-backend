@@ -1,13 +1,16 @@
 from pydantic import BaseModel
+from typing import Optional
 
-class ToDoRequest(BaseModel):
+class PDFRequest(BaseModel):
     name: str
-    completed: bool
+    selected: bool
+    file: str
 
-class ToDoResponse(BaseModel):
-    name: str
-    completed: bool
+class PDFResponse(BaseModel):
     id: int
+    name: str
+    selected: bool
+    file: str
 
     class Config:
-        orm_mode = True
+        from_attributes = True
